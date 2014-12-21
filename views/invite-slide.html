@@ -7,16 +7,14 @@
 			    <h3 class="panel-title">恭喜你又可以多邀请1位好基友来异界长长世面辣！</h3>
 			  </div>
 			  <div class="panel-body">
-			     <input class="form-control rounded" placeholder="邀请人昵称">
-				 <!--  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" class="btn btn-yellow rounded">
-				    Dropdown trigger
-				    <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-				   	<li ng-repeat="following in data">
-				   		<a>{{following.user}}</a>
-				   	</li>
-				  </ul> -->
+			  	 <div style="position:relative">
+				     <input id="bLable" class="form-control rounded" placeholder="邀请人昵称" data-toggle="dropdown" ng-model="invite_user" ng-change="filterInvite()" ng-focus="filterInvite()">
+					 <ul class="dropdown-menu invite_dropdown" role="menu" aria-labelledby="dLabel">
+					    <li ng-repeat="user in show_data | limitTo:6 " >
+					   		<a ng-click="checkInvite($index)">{{user.username}}</a>
+					    </li>
+					 </ul>
+				 <div>
 				<button class="btn btn-yellow rounded" ng-click="sendInvite()">发送邀请</button>
 			  </div>
 			</div>	

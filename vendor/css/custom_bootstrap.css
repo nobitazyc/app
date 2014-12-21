@@ -36,6 +36,10 @@
 	margin:auto;
 	box-shadow: none;
 }
+#extra-invite .modal-content{
+	width:274px;
+	margin-top:100px;
+}
 #mywish .modal-header,#extra-invite .modal-header{
 	border:none;
 	background: url('../../img/envelope-header.png') no-repeat 50% top;
@@ -49,6 +53,8 @@
 #extra-invite .modal-header{
 	padding-top: 17%;
 	padding-bottom: 0;
+	position: relative;
+	z-index: 3;
 }
 #mywish .modal-body,#extra-invite .modal-body{
 	border:none;
@@ -60,11 +66,14 @@
 	background-color: transparent;
 }
 #extra-invite .modal-body{
-	margin-top:-3px;
+	margin-top:-17px;
 }
 #mywish .modal-footer,#extra-invite .modal-footer, #comedy .modal-footer, #friend .modal-footer, #gift .modal-footer, #recommend .modal-footer{
 	border:none;
 	text-align: center;
+}
+#extra-invite .modal-footer{
+	margin-top:60px;
 }
 #mywish input,#extra-invite input{
 	width:90%;
@@ -133,6 +142,8 @@
 .invite-panel{
 	background-color: transparent;
 	border:none;
+	width:272px;
+	margin:auto;
 }
 .invite-panel .panel-heading{
 	border:none;
@@ -153,7 +164,7 @@
 	border:none;
 	background: url('../../img/envelope-body.png') no-repeat right -5%;
 	background-size: 100%;
-	margin-top:-12px;
+	margin-top:-16px;
 	padding-top: 20%;
 	padding-bottom:100px;
 	background-color: transparent;
@@ -163,3 +174,38 @@
 	margin:auto;
 	margin-bottom: 29%;
 }
+
+.invite-panel .dropdown-menu{
+	top: -187px;
+	left: 0;
+	right:0;
+	width:160px;
+	margin:auto;
+	box-shadow: none;
+	background-color: rgba(0, 148, 248,0.8);
+	overflow: hidden;
+	border-radius: 10px;
+	border:none;
+	padding:0;
+
+}
+.invite-panel .dropdown-menu li{
+	text-align: center;
+	text-shadow:none;
+	border-bottom: 1px solid rgba(255,255,255,0.2);
+
+}
+.invite-panel .dropdown-menu li:last-child{
+	border:none;
+}
+.invite-panel .dropdown-menu li a{
+	color:white;
+	padding:5px 0px;
+
+}
+.invite-panel .dropdown-menu li a:focus, .invite-panel .dropdown-menu li a:hover{
+	color:white;
+	background-color: rgba(33, 44, 95,0.8);
+	background-image: none;
+}
+

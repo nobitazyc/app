@@ -1,6 +1,5 @@
 $(function(){
 	$(".item").on("swipeleft",function(){
-      console.log('left');
       $('.carousel').carousel('next');
     });
     $(".item").on("swiperight",function(){
@@ -70,18 +69,51 @@ $(function(){
 			$('.game-gif').attr('src','img/gamestart.png');
 		}
 	}]);
+
+
 	jujuapp.controller("inviteController",['$scope',function($scope){
 		$scope.current_user = me; //这里调用接口1，获取用户基本资料
 		$scope.data = followings.users; //这里调用接口8获得观众用户信息
+		$scope.show_data = $scope.data;
 		$scope.invite_user = "";
+		$scope.filterInvite = function(){
+			var i=0;
+			var length =  $scope.data.length;
+			if($scope.invite_user == ""){
+				$scope.show_data = $scope.data;
+			}
+			else{
+				$scope.show_data = [];
+				for(i = 0;i<length; i++){
+					if($scope.data[i].username.indexOf($scope.invite_user) > -1){
+						$scope.show_data.push($scope.data[i]);
+					}
+				}
+			}
+			if($scope.show_data.length<7){
+				console.log('here');
+				$(".invite_dropdown").css("top",(30*(6-$scope.show_data.length)-183)+"px");
+			}
+			else{
+				$(".invite_dropdown").css("top","-187px");
+			}
+
+		};
+		$scope.checkInvite = function(index){
+			$scope.invite_user = $scope.show_data[index].username;
+		};
 		$scope.sendInvite = function(){
 			//这里调用接口12发送邀请，参数$scope.current_user.username, $scope.invite_user
 		};
 	}]);
+
+
 	jujuapp.controller("extraInviteController",['$scope',function($scope){
 		$scope.data = followings; //这里调用接口8获得观众用户信息
 		$scope.sendInvite = function(){};
 	}]);
+
+
 	jujuapp.controller("comedyController",['$scope','mySharedService',function($scope, sharedService){
 		$scope.data = comedy; //这里调用接口2获得吐槽信息
 		$scope.$on('handleBroadcast', function(event) {
@@ -186,6 +218,9 @@ $(function(){
 			},
 			{
 				username:"fff"
+			},
+			{
+				username:"abb"
 			}
 		]
 	};
