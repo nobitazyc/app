@@ -17,6 +17,9 @@
 .rounded{
 	border-radius: 15px;
 }
+.rounded20{
+	border-radius: 20px;
+}
 .pull-left{
 	float: left;
 }
@@ -25,8 +28,8 @@
 }
 .circled{
 	border-radius: 50%;
-	height:50px;
-	width:49px;
+	height: 55px;
+	width: 55px;
 	background-color: #212C5F;
 	border:3px solid #246ED6;
 	font-size: 12px;
@@ -78,8 +81,9 @@ body{
 }
 /*game part*/
 .game-gif{
-	width:100%;
-	z-index: -1;
+	width: 130%;
+	left: -15%;
+	margin-top: -10%;
 }
 .game-container{
 	position:relative;
@@ -87,8 +91,8 @@ body{
 }
 .game-play{
 	position: absolute;
-	top: 68.5%;
-	left: 54%;
+	top: 62.5%;
+	left: 57%;
 	padding: 0;
 }
 .game-last-time{
@@ -97,8 +101,9 @@ body{
 	padding: 10px 20px;
 	margin: auto;
 	max-width: 200px;
-	margin-top: -180px;
-	background-color:#402026;
+	margin-top: -210px;
+	font-size: 14px;
+	color:#00ADFF;
 }
 /*topic part*/
 .topic-img{
@@ -155,6 +160,8 @@ body{
 .wish-line{
 	padding-bottom:3px;
 	border-bottom:1px solid rgba(255,255,255,0.2);
+	margin-left:10px;
+	margin-right:10px;
 }
 .wish-avarta{
 	margin-top:10px;
@@ -172,5 +179,5 @@ body{
 	padding:0;
 }
 .wish-btn-container button{
-	font-size: 12px;
+	font-size: 14px;
 }

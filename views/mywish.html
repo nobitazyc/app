@@ -12,11 +12,14 @@
             <div class="form-group">
               <input class="form-control rounded" id="mywish" placeholder="我的愿望" ng-model="newWish.content">
             </div>
-            <button type="submit" id="sendwish" class="btn btn-yellow rounded" ng-click="postWish()" data-dismiss="modal">许愿</button>
+            <button type="submit" id="sendwish" class="btn btn-yellow rounded20" ng-click="postWish()" data-dismiss="modal">许愿</button>
           </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-blue rounded" data-dismiss="modal">等下再许</button>
+            <div class="btn-blue-container">
+             <button type="button" class="btn btn-blue rounded20" data-dismiss="modal">等下再许</button>
+             <span class="btn-star"></span>
+            </div>
           </div>
         </div>
       </div>

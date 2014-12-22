@@ -13,8 +13,8 @@
               <span class="like-count push-right">共同愿望者{{myWish.like_count}}</span>
               <p class="text-left wish-content clear">{{myWish.content}}</p>
             </div>
-            <div class="col-xs-2 wish-btn-container" style="margin-top:20px;">
-              <button class="rounded btn btn-yellow-inverse" ng-click="share()">分享</button>
+            <div class="col-xs-2 wish-btn-container">
+              <button class="rounded20 btn btn-orange-inverse" ng-click="share()">分享</button>
             </div>
           </div>
       </li>
@@ -28,13 +28,13 @@
               <p class="text-left wish-content">{{wish.content}}</p>
             </div>
             <div class="col-xs-2 wish-btn-container" style="margin-top:20px;">
-              <button class="rounded btn btn-red-inverse" ng-hide="wish.i_liked" ng-click="likeit($index)"><i class="fa fa-heart-o"></i></button>
+              <button class="rounded20 btn btn-red-inverse" ng-hide="wish.i_liked" ng-click="likeit($index)"><i class="fa fa-heart-o"></i></button>
               <button class="rounded btn btn-red" ng-show="wish.i_liked" ng-click="dislikeit($index)"><i class="fa fa-heart"></i></button>
             </div>
           </div>
       </li>
     </ul> 
-    <button type="submit" class="btn btn-yellow rounded" ng-click="popMyWish()">大声说出你的二次元愿望！</button>
+    <button type="submit" class="btn btn-orange rounded20" ng-click="popMyWish()">大声说出你的二次元愿望！</button>
     <div ng-include="'views/mywish.html'"></div>
   </div>
 </div>
