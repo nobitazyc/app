@@ -14,11 +14,11 @@
               <p class="text-left wish-content clear">{{myWish.content}}</p>
             </div>
             <div class="col-xs-2 wish-btn-container">
-              <button class="rounded20 btn btn-orange-inverse" ng-click="share()">分享</button>
+              <button class="rounded btn btn-orange-inverse" ng-click="refresh()"><i class="fa fa-refresh"></i></button>
             </div>
           </div>
       </li>
-      <li ng-repeat="wish in wishes" class="wish-line">
+      <li ng-repeat="wish in wishes | limitTo:4" class="wish-line">
           <div class="row">
             <div class="col-xs-2">
               <img ng-src="{{wish.avarta}}" class="wish-avarta img-circle">
