@@ -18,8 +18,16 @@ $(function(){
 	        }
 	    };
 	});
-	jujuapp.controller("gameController",['$scope','mySharedService',function($scope, sharedService){
-		$scope.data = me; // 这里需要获取接口1，获取用户基本资料
+	jujuapp.controller("gameController",['$scope','$http','mySharedService',function($scope,$http, sharedService ){
+
+		//这里是get请求接口的方法，其他的请求接口也按照这个方式
+		$scope.data = []; // 这里需要获取接口1，获取用户基本资料
+		$http.get('http://appwap.juju.la/yj/detail?userid=10000142').success(function(data){
+			$scope.data = data;
+		})
+
+
+		console.log($scope.data);
 		$scope.result = 0;
 		$scope.clickcheck = false;
 		$scope.play = function(){
@@ -71,8 +79,11 @@ $(function(){
 	}]);
 
 
-	jujuapp.controller("inviteController",['$scope',function($scope){
-		$scope.current_user = me; //这里调用接口1，获取用户基本资料
+	jujuapp.controller("inviteController",['$scope','$http',function($scope, $http){
+		$scope.current_user = [];//这里调用接口1，获取用户基本资料
+		$http.get('http://appwap.juju.la/yj/detail?userid=10000142').success(function(data){
+			$scope.current_user = data;
+		}); 
 		$scope.data = followings.users; //这里调用接口8获得观众用户信息
 		$scope.show_data = $scope.data;
 		$scope.invite_user = "";
@@ -108,20 +119,20 @@ $(function(){
 	}]);
 
 
-	jujuapp.controller("extraInviteController",['$scope',function($scope){
+	jujuapp.controller("extraInviteController",['$scope','$http',function($scope,$http){
 		$scope.data = followings; //这里调用接口8获得观众用户信息
 		$scope.sendInvite = function(){};
 	}]);
 
 
-	jujuapp.controller("comedyController",['$scope','mySharedService',function($scope, sharedService){
+	jujuapp.controller("comedyController",['$scope','$http','mySharedService',function($scope, $http, sharedService){
 		$scope.data = comedy; //这里调用接口2获得吐槽信息
 		$scope.$on('handleBroadcast', function(event) {
 	        $scope.data = comedy; //这里调用接口2获得新的吐槽信息
 	    }); 
 	}]);
 
-	jujuapp.controller("giftController",['$scope',function($scope){
+	jujuapp.controller("giftController",['$scope','$http',function($scope,$http){
 		$scope.data = gift; //这里调用接口4获取奖品信息
 		$scope.share = function(){
 			//分享的function在这里
@@ -131,15 +142,18 @@ $(function(){
 	    }); 
 	}]);
 
-	jujuapp.controller("friendController",['$scope',function($scope){
-		$scope.current_user = me //这里调用接口1，获取用户基本资料
+	jujuapp.controller("friendController",['$scope','$http',function($scope,$http){
+		$scope.current_user = [];
+		$http.get('http://appwap.juju.la/yj/detail?userid=10000142').success(function(data){
+			$scope.current_user = data;
+		});  //这里调用接口1，获取用户基本资料
 		$scope.content = "";
 		$scope.sendJujuFriends =function(){
 			//这里需要调用接口11，发送juju friend,参数为 $scope.current_user.username, $scope.content
 		};
 	}]);
 
-	jujuapp.controller("recommendController",['$scope',function($scope){
+	jujuapp.controller("recommendController",['$scope','$http',function($scope,$http){
 		$scope.data = recommend; //这里需要调用接口3，获取推荐用户信息
 		$scope.togglefollow = function(){
 			if($scope.data.followed)
@@ -159,11 +173,14 @@ $(function(){
 	    }); 
 	}]);
 
-	jujuapp.controller("wishController",['$scope',function($scope){
+	jujuapp.controller("wishController",['$scope','$http',function($scope,$http){
 		$scope.newWish = {};
 		$scope.myWish = mywish; //这里调取接口7获取个人许愿信息
 		$scope.wishes = wishes.wishes; //这里调用接口6获取许愿信息
-		$scope.current_user = me //这里调用接口1，获取用户基本资料
+		$scope.current_user = [] //这里调用接口1，获取用户基本资料
+		$http.get('http://appwap.juju.la/yj/detail?userid=10000142').success(function(data){
+			$scope.current_user = data;
+		});
 		$scope.share = function(){
 			//分享function写这里
 		}
