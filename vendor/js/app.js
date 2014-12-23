@@ -121,6 +121,14 @@ $(function(){
 			$scope.invite_user = $scope.show_data[index].username;
 			$scope.invite_userid = $scope.show_data[index].userid;
 		};
+		$scope.inAnimation = function(){
+			$('.graph-button').css("margin-top","-20px");
+			$('.graph-button').css("margin-bottom","20px");
+		};
+		$scope.outAnimation = function(){
+			$('.graph-button').css("margin-top","0px");
+			$('.graph-button').css("margin-bottom","0px");
+		};
 		$scope.sendInvite = function(){
 			$http.get(host + 'yj/invite?userid='+uid+'&invite_user:'+$scope.invite_userid
 			).success(function(data){
@@ -258,5 +266,101 @@ $(function(){
 
 		};
 	}]);
+
+
+	var me =
+	{
+		username:"nobitanobi",
+		play_last_count:10,
+		avarta:"img/avarta.jpg"
+	};
+
+	var followings = {
+		users:[
+			{
+				username:"aaa"
+			},
+			{
+				username:"bbb"
+			},
+			{
+				username:"ccc"
+			},
+			{
+				username:"ddd"
+			},
+			{
+				username:"eee"
+			},
+			{
+				username:"fff"
+			},
+			{
+				username:"abb"
+			}
+		]
+	};
+	var comedy =
+	{
+		title:"这是标题",
+		content:"吐槽吐槽吐槽吐槽吐槽"
+	};
+	var comedy2 ={
+		title:"这是标题2",
+		content:"吐槽吐槽吐槽吐槽吐槽2"
+	};
+
+
+	var recommend =
+	{
+		username:"nobitanobi",
+		avarta:"img/avarta.jpg",
+		attribute:"动漫",
+		followed:false
+	};
+
+	var gift =
+	{
+		gift_title:"奖品标题",
+		gift_image:"img/gift.jpg",
+		gift_description:"这是介绍这是介绍这是介绍这是介绍这是介绍"
+	};
+
+	var wishes = {
+		wishes:[
+			{
+				username:"用户1",
+				avarta:"img/avarta3.jpg",
+				content:"愿望愿望愿望愿望愿望",
+				i_liked:false
+			},
+			{
+				username:"jaisod",
+				avarta:"img/avarta3.jpg",
+				content:"愿望2愿望2愿望2愿望2愿望2愿望2愿望2愿望2愿望2",
+				i_liked:false
+			},
+			{
+				username:"sodjfoaj",
+				avarta:"img/avarta4.jpg",
+				content:"愿望3愿望3愿望3愿望4愿望3愿望3愿望3愿望3愿望3",
+				i_liked:false
+			},
+			{
+				username:"sodjfoaj",
+				avarta:"img/avarta4.jpg",
+				content:"愿望3愿望3愿望3愿望4愿望3愿望3愿望3愿望3愿望3",
+				i_liked:false
+			}
+		]
+	};
+
+	var mywish =
+	{
+		username:"nobitanobi",
+		wished:false,
+		content:"",
+		like_count:100,
+	};
 
 })();
