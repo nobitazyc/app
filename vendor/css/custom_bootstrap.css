@@ -7,12 +7,12 @@
 .btn-red-inverse{
 	background-color:transparent;
 	border:1px solid red;
-	color:red;
+	color:#FF4544;
 	padding:6px 11px;
 	font-size: 14px;
 }
 .btn-red{
-	background-color:red;
+	background-color:#FF4544;
 	color:white;
 	font-size: 14px;
 }
@@ -74,7 +74,7 @@
 
 #extra-invite .modal-content{
 	max-width:274px;
-	margin-top:100px;
+	margin-top:50px;
 }
 #extra-invite .modal-content{
 	background: url('../../img/prize.png') no-repeat center top;

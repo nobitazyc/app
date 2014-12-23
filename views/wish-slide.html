@@ -1,8 +1,8 @@
 <!--许愿页面 -->
-<img src="img/nonebg.png" style="width:100%" alt="...">
+<img src="img/nonebg.png" id="image_under" style="width:100%" class="image_under" alt="...">
 <div class="carousel-caption wish-list">
   <div ng-controller="wishController" >
-    <ul class="nostyle nopadding">
+    <ul class="wish-container nostyle nopadding">
       <li class="wish-line" ng-show="myWish.wished">
         <div class="row">
             <div class="col-xs-2">
@@ -10,15 +10,14 @@
             </div>
             <div class="col-xs-7" style="margin-left:10px">
               <h4 class="text-left wish-user pull-left">{{myWish.username}}</h4>
-              <span class="like-count push-right">共同愿望者{{myWish.like_count}}</span>
               <p class="text-left wish-content clear">{{myWish.content}}</p>
             </div>
             <div class="col-xs-2 wish-btn-container">
-              <button class="rounded btn btn-orange-inverse" ng-click="refresh()"><i class="fa fa-refresh"></i></button>
+              <div class="wish_liked">追梦者<br>{{myWish.like_count}}</div>
             </div>
           </div>
       </li>
-      <li ng-repeat="wish in wishes | limitTo:4" class="wish-line">
+      <li ng-repeat="wish in wishes" class="wish-line">
           <div class="row">
             <div class="col-xs-2">
               <img ng-src="{{wish.avarta}}" class="wish-avarta img-circle">
@@ -28,7 +27,7 @@
               <p class="text-left wish-content">{{wish.content}}</p>
             </div>
             <div class="col-xs-2 wish-btn-container" style="margin-top:20px;">
-              <button class="rounded20 btn btn-red-inverse" ng-hide="wish.i_liked" ng-click="likeit($index)"><i class="fa fa-heart-o"></i></button>
+              <button class="rounded btn btn-red-inverse" ng-hide="wish.i_liked" ng-click="likeit($index)"><i class="fa fa-heart-o"></i></button>
               <button class="rounded btn btn-red" ng-show="wish.i_liked" ng-click="dislikeit($index)"><i class="fa fa-heart"></i></button>
             </div>
           </div>

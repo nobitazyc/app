@@ -1,11 +1,25 @@
 $(function(){
+	var height = $(window).height();
 	$(".item").on("swipeleft",function(){
       $('.carousel').carousel('next');
+      setTimeout(function() {
+	      $('.image_under').css("height",height+"px");
+	    }, 100);
     });
     $(".item").on("swiperight",function(){
       $('.carousel').carousel('prev');
-    });
-
+      setTimeout(function() {
+	      $('.image_under').css("height",height+"px");
+	    }, 100);
+    }); 
+    $('#carousel-example-generic').on('slide.bs.carousel', function () {
+	  setTimeout(function() {
+	      $('.image_under').css("height",height+"px");
+	    }, 100);
+	})
+    setTimeout(function() {
+      $('.image_under').css("height",height+"px");
+    }, 300);
 });
 
 (function(){
@@ -48,7 +62,7 @@ $(function(){
 			setTimeout(function(){
 				switch($scope.result){
 					case 0:{
-						$('#comedy').modal('show');
+						$('#friend').modal('show');
 						break;
 					}
 					case 1:{
@@ -92,7 +106,7 @@ $(function(){
 			var i=0;
 			var length =  $scope.data.length;
 			if($scope.invite_user == ""){
-				$scope.show_data = $scope.data;
+				$scope.show_data = [];
 			}
 			else{
 				$scope.show_data = [];
