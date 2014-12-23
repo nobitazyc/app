@@ -43,7 +43,7 @@ $(function(){
 			})
 			$scope.data.play_last_count--;
 			$('.game-play').css('display',"none");
-			$('.game-gif').attr('src','img/game-animation.gif');
+			$('.game-gif').attr('src','img/gameanimation.gif');
 			sharedService.broadcast();
 			setTimeout(function(){
 				switch($scope.result){
@@ -52,11 +52,11 @@ $(function(){
 						break;
 					}
 					case 1:{
-						$('#friend').modal('show');
+						$('#gift').modal('show');
 						break;
 					}
 					case 2:{
-						$('#gift').modal('show');
+						$('#friend').modal('show');
 						break;
 					}
 					case 3:{
@@ -72,14 +72,6 @@ $(function(){
 
 			//这里需要接口9储存抽奖信息， 参数为$scope.
 		};
-		$scope.changeimg = function(){
-			if(!$scope.clickcheck)
-			$('.game-gif').attr('src','img/gamestart-hover.png');
-		}
-		$scope.reverseimg = function(){
-			if(!$scope.clickcheck)
-			$('.game-gif').attr('src','img/gamestart.png');
-		}
 	}]);
 
 
@@ -264,6 +256,9 @@ $(function(){
 		};
 		$scope.dislikeit = function(index){
 			$scope.wishes[index].i_liked = false;
+			$http.get(host + 'yj/cancelfavour?userid=' + uid +'&dreamid=' + $scope.wishes[index].dreamid).success(function(data){
+				//
+			});
 			//这里调用接口13储存点赞信息，参数$scope.current_user.username, $scope.wishes[index].username, false
 
 		};
