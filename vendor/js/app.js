@@ -1,5 +1,5 @@
 $(function(){
-	var height = $(window).height();
+	var height = $(window).height()+60;
 	$(".item").on("swipeleft",function(){
       $('.carousel').carousel('next');
       setTimeout(function() {
@@ -19,7 +19,13 @@ $(function(){
 	})
     setTimeout(function() {
       $('.image_under').css("height",height+"px");
+      $('.wish-container').bind('scroll', function(){
+	    	if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
+	     		angular.element('#wish_controller').scope().refresh();
+	   		}
+	 	});
     }, 300);
+    
 });
 
 (function(){
@@ -82,7 +88,7 @@ $(function(){
 			$('.game-gif').attr('src','img/gamestart.png');
 			$('.game-play').css('display',"inline-block");
 			$scope.clickcheck = false;
-			}, 4500);
+			}, 3000);
 
 			//这里需要接口9储存抽奖信息， 参数为$scope.
 		};
@@ -154,12 +160,12 @@ $(function(){
 
 	jujuapp.controller("comedyController",['$scope','$http','mySharedService',function($scope, $http, sharedService){
 		//$scope.data = comedy; //这里调用接口2获得吐槽信息
-		$scope.$on('handleBroadcast', function(event) {
-			$http.get(host + 'yj/gettucao?userid=' + uid).success(function(data){
-				$scope.data = data;
-				//$scope.data = comedy; //这里调用接口2获得新的吐槽信息
-			});
-	  });
+		// $scope.$on('handleBroadcast', function(event) {
+		// 	$http.get(host + 'yj/gettucao?userid=' + uid).success(function(data){
+		// 		$scope.data = data;
+		// 		//$scope.data = comedy; //这里调用接口2获得新的吐槽信息
+		// 	});
+	 //  });
 	}]);
 
 
@@ -185,6 +191,7 @@ $(function(){
 		});  //这里调用接口1，获取用户基本资料
 		$scope.content = "";
 		$scope.sendJujuFriends =function(){
+			$('#comedy').modal('show');
 			//console.log('sendJujuFriends');
 			//这里需要调用接口11，发送juju friend,参数为 $scope.current_user.username, $scope.content
 		};
@@ -242,7 +249,9 @@ $(function(){
 
 		$scope.refresh = function(){
 			$http.get(host + 'yj/getdreams?userid=' + uid).success(function(data){
-				$scope.wishes = data.wishes;
+				$.each(data.wishes,function(index,wish){
+					$scope.wishes.push(wish);
+				});
 			});
 		}
 		$scope.postWish = function(){
