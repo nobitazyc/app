@@ -28,8 +28,8 @@
 }
 .circled{
 	border-radius: 50%;
-	height: 55px;
-	width: 55px;
+	height: 65px;
+	width: 65px;
 	background-color: #212C5F;
 	border:3px solid #246ED6;
 	font-size: 12px;
@@ -40,8 +40,8 @@
 }
 .circled:hover{
 	border-radius: 50%;
-	height:50px;
-	width:49px;
+	height:65px;
+	width:65px;
 	background-color: #171F46;
 	border:3px solid #33409E;
 	font-size: 12px;
@@ -54,6 +54,7 @@
 body{
 	background: url('../../img/bg.png') no-repeat left top;
 	background-size: 100%;
+	background-color: #0C1239;
 }
 .ui-loader{
 	display: none;
@@ -66,8 +67,9 @@ body{
 .game{
 	position:absolute;
 	width:100%;
-	top:-10%;
+	top:0%;
 	left:0;
+	padding-top:0;
 }
 .wish-list{
 	width:100%;
@@ -82,7 +84,7 @@ body{
 /*game part*/
 .game-gif{
 	width: 288px;
-	margin-top: 20%;
+	margin-top: 64px;
 }
 .game-container{
 	position:relative;
@@ -96,10 +98,20 @@ body{
 	height: 50px;
 	opacity: 0;
 }
+
+.game-play{
+	position: absolute;
+	top: 62%;
+	left: 54%;
+	padding: 0;
+}
 @media screen and (min-width: 380px) {
    .game-egg{		
 		left: 36%;
 		top: 67%;
+	}
+	.game-play{
+		top: 62%;
 	}
 }
 @media screen and (min-width: 420px) {
@@ -107,12 +119,9 @@ body{
 		left: 38%;
 		top: 68%;
 	}
-}
-.game-play{
-	position: absolute;
-	top: 61.5%;
-	left: 58%;
-	padding: 0;
+	.game-play{
+		top: 62%;
+	}
 }
 .game-last-time{
 	position: inherit;
@@ -166,7 +175,7 @@ body{
 .wish-list{
 	top:0;
 	left:0;
-	padding-top:48px;
+	padding-top:64px;
 }
 .wish-user{
 	margin-bottom:3px;
