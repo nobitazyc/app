@@ -1,23 +1,23 @@
 $(function(){
 	var height = $(window).height()+60;
-	$(".item").on("swipeleft",function(){
-      $('.carousel').carousel('next');
-      setTimeout(function() {
-	      $('.image_under').css("height",height+"px");
-	    }, 100);
-    });
-    $(".item").on("swiperight",function(){
-      $('.carousel').carousel('prev');
-      setTimeout(function() {
-	      $('.image_under').css("height",height+"px");
-	    }, 100);
-    }); 
     $('#carousel-example-generic').on('slide.bs.carousel', function () {
 	  setTimeout(function() {
 	      $('.image_under').css("height",height+"px");
 	    }, 100);
 	})
     setTimeout(function() {
+	  $(".item").on("swipeleft",function(){
+	    $('.carousel').carousel('next');
+	    setTimeout(function() {
+		    $('.image_under').css("height",height+"px");
+		  }, 100);
+	  });
+	  $(".item").on("swiperight",function(){
+	    $('.carousel').carousel('prev');
+	    setTimeout(function() {
+		    $('.image_under').css("height",height+"px");
+		  }, 100);
+	  }); 
       $('.image_under').css("height",height+"px");
       $('.wish-container').bind('scroll', function(){
 	    	if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
@@ -32,7 +32,17 @@ $(function(){
 
 	var jujuapp = angular.module("jujuapp",[]);
 	var host = 'http://appwap.juju.la/';
-
+	function Anim() {
+	   $('#game-gif').addClass('swing animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	     $(this).removeClass('swing animated');
+	   });
+	   setTimeout(function(){
+	   	 $('#egg').addClass('bounceInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	   	 	
+	    });
+	   },1000);
+	   setTimeout(function(){$('#egg').removeClass('bounceInDown animated');},4000);
+	};
 	jujuapp.factory('mySharedService', function($rootScope) {
 	    return {
 	        broadcast: function() {
@@ -63,7 +73,7 @@ $(function(){
 			})
 			$scope.data.play_last_count--;
 			$('.game-play').css('display',"none");
-			$('.game-gif').attr('src','img/gameanimation.gif');
+			Anim();
 			sharedService.broadcast();
 			setTimeout(function(){
 				switch($scope.result){
@@ -84,11 +94,9 @@ $(function(){
 						break;
 					}
 				}
-
-			$('.game-gif').attr('src','img/gamestart.png');
 			$('.game-play').css('display',"inline-block");
 			$scope.clickcheck = false;
-			}, 3000);
+			}, 2500);
 
 			//这里需要接口9储存抽奖信息， 参数为$scope.
 		};
