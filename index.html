@@ -19,12 +19,20 @@
   var uid = 10000150;
   </script>
 </head>
+<div id="J_loading" class="loading" style="display:none;">
+  <div class="loading-body">
+    <div class="loading-main">
+      <div class="logo"></div>
+      <div class="progress">
+        <div id="J_proCur" class="current"></div>
+      </div>
+      <div class="hint">
+        好像有什么奇怪的东西<br/>要出来...
+      </div>
+    </div>
+  </div>
+</div>
 <body ng-app="jujuapp">
-  <script src="vendor/js/jquery-1.11.2.min.js"></script>
-  <script src="vendor/js/jquery.mobile.custom.min.js"></script>
-  <script src="vendor/js/angular.min.js"></script>
-  <script src="vendor/js/app.js"></script>
-  <script src="vendor/js/bootstrap.min.js"></script>
   <div class="container main">
 
 
@@ -59,7 +67,12 @@
     <div ng-include="'views/extra-invite.html'"></div>
     <div ng-include="'views/fail.html'"></div>
 
-
+    <script src="vendor/js/jquery-1.11.2.min.js"></script>
+    <!--<script src="vendor/js/zepto.min.js"></script>-->
+    <script src="vendor/js/jquery.mobile.custom.min.js"></script>
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/app.js"></script>
+    <script src="vendor/js/bootstrap.min.js"></script>
 
   </div>
 </body>
