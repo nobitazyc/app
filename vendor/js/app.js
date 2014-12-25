@@ -305,19 +305,24 @@ $(function(){
 			});
 		}
 		$scope.postWish = function(){
-
-			$scope.newWish = {
-				username: $scope.current_user.username,
-				wished: true,
-				content: $scope.newWish.content,
-				like_count: $scope.myWish.like_count
-			};
-			$scope.myWish = $scope.newWish;
-			$scope.newWish = {};
-			$http.get(host + 'yj/dodream?userid=' + uid +"&content=" + $scope.myWish.content ).success(function(data){
-				//console.log('已储存');
-			});
-
+			console.log($scope.newWish.content);
+			if($scope.newWish.content != undefined){
+				$scope.newWish = {
+					username: $scope.current_user.username,
+					wished: true,
+					content: $scope.newWish.content,
+					like_count: $scope.myWish.like_count
+				};
+				$scope.myWish = $scope.newWish;
+				$scope.newWish = {};
+				$http.get(host + 'yj/dodream?userid=' + uid +"&content=" + $scope.myWish.content ).success(function(data){
+					//console.log('已储存');
+				});
+				$('#mywish').modal('hide');
+			}
+			else{
+				alert('愿望还是要有滴，万一实现了呢');
+			}
 			//这里调用接口14储存许愿信息， 参数为$scope.myWish.username, $scope.myWish.content,$scope.myWish.like_count
 		};
 		$scope.likeit = function(index){
