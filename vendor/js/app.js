@@ -6,24 +6,25 @@ $(function(){
 	    }, 100);
 	})
   setTimeout(function() {
-  $(".item").on("swipeleft",function(){
-    $('.carousel').carousel('next');
-    setTimeout(function() {
-	    $('.image_under').css("height",height+"px");
-	  }, 100);
-  });
-  $(".item").on("swiperight",function(){
-    $('.carousel').carousel('prev');
-    setTimeout(function() {
-	    $('.image_under').css("height",height+"px");
-	  }, 100);
-  });
+	  $(".item").on("swipeleft",function(){
+	    $('.carousel').carousel('next');
+	    setTimeout(function() {
+		    $('.image_under').css("height",height+"px");
+		  }, 100);
+	  });
+	  $(".item").on("swiperight",function(){
+	    $('.carousel').carousel('prev');
+	    setTimeout(function() {
+		    $('.image_under').css("height",height+"px");
+		  }, 100);
+	  });
     $('.image_under').css("height",height+"px");
     $('.wish-container').bind('scroll', function(){
     	if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
      		angular.element('#wish_controller').scope().refresh();
    		}
  	});
+ 	$('.wish-container').css("height",height-300+"px");
   }, 300);
 
   /*处理loading*/
@@ -89,7 +90,6 @@ $(function(){
 			$scope.data.play_last_count--;
 			$('.game-play').css('display',"none");
 			Anim();
-			sharedService.broadcast();
 			setTimeout(function(){
 				switch($scope.result){
 					case 0:{
@@ -97,6 +97,7 @@ $(function(){
 						break;
 					}
 					case 1:{
+						sharedService.broadcast();
 						$('#gift').modal('show');
 						break;
 					}
@@ -131,16 +132,25 @@ $(function(){
 		//$scope.data = followings.users; //这里调用接口8获得观众用户信息
 		$scope.show_data = $scope.data;
 		$scope.invite_user = "";
+		$scope.invite_last_time = 8;
 		$scope.filterInvite = function(){
 			var i=0;
 			var length =  $scope.data.length;
 			if($scope.invite_user == ""){
 				$scope.show_data = [];
+				$scope.invite_userid = "";
 			}
 			else{
 				$scope.show_data = [];
+				$scope.invite_userid = "";
 				for(i = 0;i<length; i++){
 					if($scope.data[i].username.indexOf($scope.invite_user) > -1){
+						if($scope.data[i].username == $scope.invite_user)
+						{
+							$scope.invite_userid = $scope.data[i].userid
+							console.log($scope.invite_userid);
+							break;
+						}
 						$scope.show_data.push($scope.data[i]);
 					}
 				}
@@ -167,13 +177,16 @@ $(function(){
 			$('.graph-button').css("margin-bottom","0px");
 		};
 		$scope.sendInvite = function(){
-			$http.get(host + 'yj/invite?userid='+uid+'&invite_user:'+$scope.invite_userid
+			console.log($scope.invite_userid);
+			$http.get(host + 'yj/invite?userid='+uid+'&invite_user='+$scope.invite_userid
 			).success(function(data){
-				if (data.result == '-1') {
+				console.log(data.result);
+				if (data.result != '1') {
 					alert('邀请失败！');
 					return;
 				}
 				alert('邀请成功！');
+				$scope.invite_last_time--;
 			});
 			//console.log($scope.invite_userid);
 			//这里调用接口12发送邀请，参数$scope.current_user.username, $scope.invite_user
@@ -209,12 +222,17 @@ $(function(){
 
 	jujuapp.controller("friendController",['$scope','$http',function($scope,$http){
 		$scope.current_user = [];
+		$scope.tucao = ""
 		$http.get(host + 'yj/me?userid=' + uid).success(function(data){
 			$scope.current_user = data;
 		});  //这里调用接口1，获取用户基本资料
 		$scope.content = "";
 		$scope.sendJujuFriends =function(){
+			
 			$('#comedy').modal('show');
+			$http.get(host + 'yj/dotucao?userid=' + uid +"&content=" + $scope.tucao ).success(function(data){
+				console.log('已储存');
+			});
 			//console.log('sendJujuFriends');
 			//这里需要调用接口11，发送juju friend,参数为 $scope.current_user.username, $scope.content
 		};

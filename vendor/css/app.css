@@ -169,9 +169,14 @@ body{
 	border:none;
 	color:white;
 }
-
+.invite-last-time{
+	color:#00ADFF;
+}
 
 /*wishes*/
+.wish_controller{
+	height: 100%;
+}
 .wish-list{
 	top:0;
 	left:0;
@@ -183,7 +188,7 @@ body{
 	font-size:13px;
 }
 .wish-container{
-	max-height:300px;
+	height:80%;
 	overflow: scroll;
 }
 .wish-content{
