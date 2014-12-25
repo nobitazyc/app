@@ -80,40 +80,44 @@ $(function(){
 		$scope.result = 0;
 		$scope.clickcheck = false;
 		$scope.play = function(){
-			$scope.clickcheck = true;
-			$http.get(host + 'yj/randapi').success(function(data){
-				$scope.result = data.result;
-			})
-			$http.get(host + 'yj/niu?userid='+$scope.data.userid).success(function(data){
-				;
-			})
-			$scope.data.play_last_count--;
-			$('.game-play').css('display',"none");
-			Anim();
-			setTimeout(function(){
-				switch($scope.result){
-					case 0:{
-						$('#friend').modal('show');
-						break;
+			if($scope.data.play_last_count > 0){
+				$scope.clickcheck = true;
+				$http.get(host + 'yj/randapi').success(function(data){
+					$scope.result = data.result;
+				})
+				$http.get(host + 'yj/niu?userid='+$scope.data.userid).success(function(data){
+					;
+				})
+				$scope.data.play_last_count--;
+				$('.game-play').css('display',"none");
+				Anim();
+				setTimeout(function(){
+					switch($scope.result){
+						case 0:{
+							$('#friend').modal('show');
+							break;
+						}
+						case 1:{
+							sharedService.broadcast();
+							$('#gift').modal('show');
+							break;
+						}
+						case 2:{
+							$('#friend').modal('show');
+							break;
+						}
+						case 3:{
+							$('#extra-invite').modal('show');
+							break;
+						}
 					}
-					case 1:{
-						sharedService.broadcast();
-						$('#gift').modal('show');
-						break;
-					}
-					case 2:{
-						$('#friend').modal('show');
-						break;
-					}
-					case 3:{
-						$('#extra-invite').modal('show');
-						break;
-					}
-				}
-			$('.game-play').css('display',"inline-block");
-			$scope.clickcheck = false;
-			}, 2500);
-
+				$('.game-play').css('display',"inline-block");
+				$scope.clickcheck = false;
+				}, 2500);
+			}
+			else{
+				$("#nochance").modal('show');
+			}
 			//这里需要接口9储存抽奖信息， 参数为$scope.
 		};
 	}]);
@@ -132,7 +136,7 @@ $(function(){
 		//$scope.data = followings.users; //这里调用接口8获得观众用户信息
 		$scope.show_data = $scope.data;
 		$scope.invite_user = "";
-		$scope.invite_last_time = 8;
+		$scope.invite_last_time = 0;
 		$scope.filterInvite = function(){
 			var i=0;
 			var length =  $scope.data.length;
@@ -177,17 +181,22 @@ $(function(){
 			$('.graph-button').css("margin-bottom","0px");
 		};
 		$scope.sendInvite = function(){
-			console.log($scope.invite_userid);
-			$http.get(host + 'yj/invite?userid='+uid+'&invite_user='+$scope.invite_userid
-			).success(function(data){
-				console.log(data.result);
-				if (data.result != '1') {
-					alert('邀请失败！');
-					return;
-				}
-				alert('邀请成功！');
-				$scope.invite_last_time--;
-			});
+			if($scope.invite_last_time>0){
+				$http.get(host + 'yj/invite?userid='+uid+'&invite_user='+$scope.invite_userid
+				).success(function(data){
+					console.log(data.result);
+					if (data.result != '1') {
+						alert('邀请失败！');
+						return;
+					}
+					alert('邀请成功！');
+					$scope.invite_last_time--;
+				});
+			}
+			else
+			{
+				$("#noinvite").modal('show');
+			}
 			//console.log($scope.invite_userid);
 			//这里调用接口12发送邀请，参数$scope.current_user.username, $scope.invite_user
 		};

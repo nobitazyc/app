@@ -64,7 +64,7 @@
 }
 
 /* modal */
-#mywish .modal-content, #extra-invite .modal-content, #comedy .modal-content, #friend .modal-content, #gift .modal-content, #recommend .modal-content ,#fail .modal-content{
+#mywish .modal-content, #extra-invite .modal-content, #comedy .modal-content,#nochance .modal-content,#noinvite .modal-content, #friend .modal-content, #gift .modal-content, #recommend .modal-content ,#fail .modal-content{
 	background-color: transparent;
 	max-width:272px;
 	margin:auto;
@@ -80,7 +80,7 @@
 	background: url('../../img/prize.png') no-repeat center top;
 	background-size: 90%;
 }
-#comedy .modal-content{
+#comedy .modal-content,#nochance .modal-content,#noinvite .modal-content{
 	margin-top:100px;
 }
 #mywish .modal-header{
@@ -143,7 +143,7 @@
 	background: url('../../img/leg.png') no-repeat center 40%;
 	background-size: 90%;
 }
-#mywish .modal-footer,#extra-invite .modal-footer, #comedy .modal-footer, #friend .modal-footer, #gift .modal-footer, #recommend .modal-footer, #fail .modal-footer{
+#mywish .modal-footer,#extra-invite .modal-footer, #comedy .modal-footer,#nochance .modal-footer,#noinvite .modal-footer, #friend .modal-footer, #gift .modal-footer, #recommend .modal-footer, #fail .modal-footer{
 	border:none;
 	text-align: center;
 }
@@ -178,11 +178,11 @@
 	text-align: center;
 }
 
-#comedy .modal-header, #friend .modal-header, #gift .modal-header{
+#comedy .modal-header,#nochance .modal-header,#noinvite .modal-header, #friend .modal-header, #gift .modal-header{
 	border:none;
 	background-color: none;
 }
-#comedy .modal-body, #friend .modal-body, #gift .modal-body{
+#comedy .modal-body,#nochance .modal-body,#noinvite .modal-body, #friend .modal-body, #gift .modal-body{
 	border:none;
 	border-radius: 10px;
 	background: url('../../img/comedy-bg.png') no-repeat right -5%;
@@ -202,14 +202,14 @@
 	margin-top:-8px;
 	background-color: transparent;
 }
-#comedy .modal-body{
+#comedy .modal-body,#nochance .modal-body,#noinvite .modal-body{
 	padding: 0;
 	margin-top: -10px;
 	padding-top: 55px;
 	padding-left: 40px;
 	padding-right: 40px;
 	text-align: center;
-	height:100px;
+	max-height:150px;
 }
 #friend .modal-body{
 	max-height: 220px;
